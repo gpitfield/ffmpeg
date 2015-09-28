@@ -47,3 +47,5 @@ RUN git clone --depth 1 https://chromium.googlesource.com/webm/libvpx.git
 WORKDIR libvpx
 RUN ./configure --prefix=${dir}/ffmpeg_build --disable-examples \
 && make && make install && make distclean
+WORKDIR ${dir}
+RUN rm -rf ffmpeg_build fdk-aac lame-3* libogg* libvorbis* libvpx* opus* x264* yasm*
