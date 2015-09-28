@@ -46,15 +46,3 @@ RUN git clone --depth 1 https://chromium.googlesource.com/webm/libvpx.git
 WORKDIR libvpx
 RUN ./configure --prefix=/usr/local/ffmpeg_build --disable-examples \
 && make && make install && make distclean
-
-# base nginx rtmp -> image
-# then save this with a new tag called waggle which has the config files
-
-#$location = '/usr/local'
-#$command_path = '/usr/bin:/bin:/sbin:/usr/sbin'
-#$project = 'rtmp'
-#include ffmpeg
-#include gcc
-#include nginx_rtmp
-##include s3fs
-#Exec { logoutput => on_failure }
