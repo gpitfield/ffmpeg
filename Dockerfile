@@ -1,4 +1,4 @@
-FROM gpitfield/centos:base
+FROM gpitfield/centos
 ENV dir /usr/local
 WORKDIR ${dir}
 RUN yum install -y zlib-devel \
