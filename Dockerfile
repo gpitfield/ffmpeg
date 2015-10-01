@@ -48,4 +48,9 @@ WORKDIR libvpx
 RUN ./configure --prefix=${dir}/ffmpeg_build --disable-examples \
 && make && make install && make distclean
 WORKDIR ${dir}
+RUN git clone --depth 1 git://source.ffmpeg.org/ffmpeg
+WORKDIR ffmpeg
+ENV PKG_CONFIG_PATH "/usr/local/ffmpeg_build/lib/pkgconfig"
+RUN ./configure --prefix=${dir}/ffmpeg_build --extra-cflags=-I${dir}/ffmpeg_build/include --extra-ldflags=-L${dir}/ffmpeg_build/lib --bindir=/usr/bin --enable-gpl --enable-nonfree --enable-libfdk_aac --enable-libmp3lame --enable-libopus --enable-libvorbis --enable-libvpx --enable-libx264 && make && make install && make distclean
+WORKDIR ${dir}
 RUN rm -rf ffmpeg_build fdk-aac lame-3* libogg* libvorbis* libvpx* opus* x264* yasm*
